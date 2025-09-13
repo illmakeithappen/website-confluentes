@@ -13,18 +13,12 @@ services:
     healthCheckPath: /health
     
   # Frontend static site
-  - type: static
+  - type: web
     name: react-frontend
-    buildCommand: cd frontend && npm ci && npm run build
-    staticPublishPath: ./frontend/build
-    headers:
-      - path: /*
-        name: X-Frame-Options
-        value: SAMEORIGIN
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./build
+    rootDir: frontend
     envVars:
       - key: REACT_APP_API_URL
         value: https://fastapi-backend.onrender.com
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
