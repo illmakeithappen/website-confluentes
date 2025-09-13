@@ -1,0 +1,30 @@
+services:
+  # Backend API service
+  - type: web
+    name: fastapi-backend
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: ENV
+        value: production
+      - key: PORT
+        value: 8000
+    healthCheckPath: /health
+    
+  # Frontend static site
+  - type: static
+    name: react-frontend
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: ./frontend/build
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://fastapi-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

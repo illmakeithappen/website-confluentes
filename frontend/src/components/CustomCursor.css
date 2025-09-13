@@ -1,0 +1,74 @@
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-blue);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hidden {
+  opacity: 0;
+}
+
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 2px solid var(--accent-blue);
+  mix-blend-mode: normal;
+}
+
+.custom-cursor-follower {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  background-color: var(--accent-blue);
+  opacity: 0.1;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.custom-cursor-follower.hidden {
+  opacity: 0;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none;
+  }
+  
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Hide default cursor globally */
+* {
+  cursor: none !important;
+}
+
+/* Show default cursor for text selection */
+p, span, h1, h2, h3, h4, h5, h6 {
+  cursor: none;
+}
+
+p::selection, 
+span::selection, 
+h1::selection, 
+h2::selection, 
+h3::selection, 
+h4::selection, 
+h5::selection, 
+h6::selection {
+  cursor: text;
+}

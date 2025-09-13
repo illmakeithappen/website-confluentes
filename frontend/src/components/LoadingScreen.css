@@ -1,0 +1,177 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeOut 0.5s ease-out 2.3s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.loading-logo {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.logo-bars-loading {
+  display: flex;
+  gap: 4px;
+  height: 40px;
+  align-items: flex-end;
+}
+
+.bar-loading {
+  width: 4px;
+  background-color: var(--primary-white);
+  animation: barWave 1.5s ease-in-out infinite;
+}
+
+.bar-loading.bar-1,
+.bar-loading.bar-7 {
+  height: 60%;
+  animation-delay: 0s;
+}
+
+.bar-loading.bar-2,
+.bar-loading.bar-6 {
+  height: 80%;
+  animation-delay: 0.1s;
+}
+
+.bar-loading.bar-3,
+.bar-loading.bar-5 {
+  height: 90%;
+  animation-delay: 0.2s;
+}
+
+.bar-loading.bar-4 {
+  height: 100%;
+  animation-delay: 0.3s;
+}
+
+@keyframes barWave {
+  0%, 100% {
+    transform: scaleY(1);
+    background-color: var(--primary-white);
+  }
+  50% {
+    transform: scaleY(1.3);
+    background-color: var(--accent-blue-light);
+  }
+}
+
+.loading-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.loading-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--primary-white);
+  animation: letterSpacing 2s ease-out infinite;
+}
+
+.loading-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: var(--accent-blue-light);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.5s forwards;
+}
+
+.loading-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 200px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--accent-blue-light);
+  transition: width 0.3s ease-out;
+}
+
+.progress-number {
+  font-family: var(--font-accent);
+  font-size: 2rem;
+  color: var(--primary-white);
+  opacity: 0.8;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .loading-logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .logo-bars-loading {
+    height: 35px;
+    gap: 3px;
+  }
+  
+  .bar-loading {
+    width: 3px;
+  }
+  
+  .loading-title {
+    font-size: 1.5rem;
+  }
+  
+  .loading-subtitle {
+    font-size: 0.625rem;
+  }
+  
+  .progress-number {
+    font-size: 1.5rem;
+  }
+}
